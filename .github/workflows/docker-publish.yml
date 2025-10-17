@@ -1,26 +1,27 @@
-name: Build and Push Docker Image to Docker Hub
+name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v5
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: xhzyz
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
+      - name: Build and Push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: xhzyz/ddddocr-xhzyz:latest
+          tags: xhzyz/ddddocr:latest
